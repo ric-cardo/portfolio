@@ -1,0 +1,75 @@
+<div>
+  <div>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <!-- sort select -->
+        <select ng-model="orderProp"  
+                ng-options="option.value as option.name for option in typeOptions">
+        <!--   <option value="proximity">proximity</option>
+          <option value="priority">priority</option>
+          <option value="date">date</option> -->
+        </select>
+
+      </div>
+      <div class="small-6 columns">
+        <!-- ascend & descend -->
+        <button ng-click="ascending()">A-Z</button>
+        <button ng-click="descending()">Z-A</button>
+      </div>
+    </div>
+    
+    
+    <h3>Add Job</h3>
+    <!-- form to add jobs -->
+    <form  class='css-form' ng-submit="submitJob(newJob)">
+      <div class="row">
+          <div class="columns small-12 large-2">
+            <input type="text" ng-model="newJob.ref"  size="10" placeholder="job ref">
+          </div>
+          <div class="columns small-12 large-2"> 
+            <input type="text" ng-model="newJob.client"  size="30" placeholder="client name" required>
+          </div>
+          <div class="columns small-12 large-2">
+            <input type="date" ng-model="newJob.date"  size="30" placeholder="date time" required>
+          </div>
+          <div class="columns small-12 large-2">
+            <input type="number" ng-model="newJob.proximity"  size="30" placeholder="proximity">
+          </div>
+          <div class="columns small-12 large-2">
+            <input type="number" min='1' max='3' ng-model="newJob.priority"  size="30" placeholder="priority">
+          </div>
+          <div class="columns small-12 large-2">
+            <input type="number" min='0' ng-model="newJob.subJobs"  size="30" placeholder="subjobs">
+          </div>
+          <div class="columns small-12">
+             <input ng-show='!editing' class="button" type="submit" value="add">
+             <input ng-show='editing' class="button" type="submit" value="save">
+          </div>
+      </div>
+    </form>
+    <!-- job List -->
+    <ul class='no-bullet list-unstyled'>
+      <li class="border row"ng-repeat="job in jobs | orderBy:orderProp:sortOrder">
+        <div class="small-4 columns"> #{{job.ref}}</div>
+        <div class="small-4 columns"> {{job.client}}</div>
+        <div class="small-4 columns">{{job.date | date:'dd/MM/yyyy HH:mm'}}</div>
+        <div class="small-4 columns">proximity: {{job.proximity}} priority: {{job.priority}}</div>
+        <div ng-show="job.subJobs.length >0" class="small-4 columns">
+         <a href="#/jobs/{{job._id}}/subjobs">view subjobs</a>
+       </div>
+        <div class="small-12 columns">
+          <a href="" class="button" ng-click="editJob(job)">edit </a>
+          <a href="" class="button alert" ng-click="removeJob(job)">delete </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<script>
+  // angular.bootstrap(document.querySelector('#view>div'),['app']);
+</script>
+
+ 	

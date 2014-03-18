@@ -1,0 +1,8 @@
+<div>
+  <h3> sub jobs for #{{ subjobs.ref }}</h3>
+  <ul class='no-bullet list-unstyled'>
+    <li class="border row" ng-repeat="job in subjobs.subJobs | orderBy:orderProp:sortOrder">
+      <p>subjob {{$index}}</p>
+    </li>
+  </ul>
+</div>

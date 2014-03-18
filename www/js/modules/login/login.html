@@ -1,0 +1,18 @@
+<div class="alert-box alert" ng-show="loginError">
+  {{loginError}}
+</div>
+<form ng-submit="login(user)">
+	<div class="row">
+	    <div class="columns small-12">
+	      <label for="username">Username</label>
+	      <input type="text" id='username' ng-model="user.username"  size="10">
+	    </div>
+	    <div class="columns small-12">
+	      <label for="password">Password</label> 
+	      <input type="password" id='password' ng-model="user.password"  size="30">
+	    </div>
+	    <div class="columns small-12">
+	    	<button id='login' type="submit">Login</button>
+	    </div>
+	</div>    	
+</form>	

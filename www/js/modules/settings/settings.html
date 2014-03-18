@@ -1,0 +1,21 @@
+<h3>settings</h3>
+<form name='form' novalidate >
+  <div class="row collapse">
+    <div class="small-3 large-2 columns">
+      <span class="prefix">server url</span>
+    </div>
+    <div class="small-9 large-10 columns">
+      <input name='serverUrl' type="url" ng-model="settings.serverUrl" placeholder="Enter your server URL..." required>
+      <div class="alert-box alert" ng-show="form.serverUrl.$invalid && submitted">
+        <i> cannot connect to server</i>
+      </div>
+    </div>
+    <div class="columns small-12">
+       <button class="button" ng-click='update(settings,form)'  ng-disabled="form.$invalid || isUnchanged(settings)">save</button>
+       <button class="button alert" ng-click='reset()' ng-disabled="isUnchanged(settings)">reset</button>
+    </div>
+  </div>
+</form>
+
+
+ 

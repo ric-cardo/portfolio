@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<workflow>
+	<workflowComponent name="loginUI">
+		<requestHandler serverClass="com.iapps.ViewJobRequestHandler" localJS="displayLoginUIRH" onErrorWorkflowComonent="loginUI"/>
+		<targets>
+			<target name="Login"  nextWorkflowComponent="doLogin"/>
+		</targets>
+	</workflowComponent>
+	<workflowComponent name="doLogin">
+                 <requestHandler serverClass="com.iapps.ViewJobRequestHandler" localJS="doLoginRH" onErrorWorkflowComonent="loginUI"/>
+                <targets>
+                        <target  nextWorkflowComponent="mainUIA"/>
+                </targets>
+    </workflowComponent>
+    <workflowComponent name="subJobsUI">
+    	<requestHandler serverClass="com.iapps.ViewJobRequestHandler" localJS="displaySubjobsUIRH" onErrorWorkflowComonent="loginUI"/>
+    	<targets>
+    		<target name="Login"  nextWorkflowComponent="doLogin"/>
+    	</targets>
+    </workflowComponent>
+</workflow>
