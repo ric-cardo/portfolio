@@ -20,7 +20,13 @@ password: 123
 serverUrl: http://localhost:9000
 ``
 
+Dojit Games
+---------- 
+Below are links to games and website i created during my time at dojit.
 
++ http://developer.dojit.com/
++ https://play.google.com/store/apps/developer?id=Dojit+Games
++ https://itunes.apple.com/us/artist/dojit-games/id586706470
 
 
 
