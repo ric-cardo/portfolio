@@ -47,7 +47,10 @@ define(function (require) {
 	          { ref:'125',client:'mr doe',date: new Date(2014,1,22), proximity:30,priority:3, subJobs:[{},{},{}]},
 	          { ref:'126',client:'mrs doe',date: new Date(2014,1,21), proximity:40,priority:3, subJobs:[{},{},{}]}
 	        ];
-	        db.addBatch(jobs).then($scope.displayJobs);
+	        db.addBatch(jobs).then(function(res) {
+		      console.log(res);
+		      $scope.displayJobs(jobs);
+		    });
 	      };
 
 	      $scope.addJob = function(job) {
