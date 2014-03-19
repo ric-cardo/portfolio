@@ -8,50 +8,15 @@ define(function (require) {
   _ = require('underscore');
 
 	module.controller('JobCtrl',
-	    ['$scope','$q','db','FrontController','typeOptions',
-	    function ($scope,$q,db,FrontController,typeOptions) {
-	      $scope.jobs = [];
+	    ['$scope','$q','db','FrontController','typeOptions','jobs',
+	    function ($scope,$q,db,FrontController,typeOptions,jobs) {
+
+	      $scope.jobs = jobs;
 	      $scope.sortOrder = true;
 	      $scope.editing = false;
 	      $scope.typeOptions = typeOptions;
 	      $scope.orderProp = $scope.typeOptions[0].value;
 	      var unEditedJob = {};
-
-	      $scope.init = function(){
-	        db.info()
-	          .then(function(res){
-	          /*jshint camelcase: false */
-	          if(res.doc_count === 0)
-	          {
-	            $scope.setup();
-	          }
-	          else
-	          {
-	            db.getAll().then(function(res){
-	              var jobs = _.pluck(res.rows,'doc');
-	              $scope.displayJobs(jobs);
-	            });
-	          }
-	        });
-	      };
-
-	      $scope.displayJobs= function(jobs){
-	        $scope.jobs = jobs;
-	      };
-
-	      $scope.setup = function(){
-	        console.log('populating db with default data');
-	        var jobs =[
-	          { ref:'123',client:'mr smith',date: 1288323623006, proximity:20,priority:1, subJobs:[{},{},{}]},
-	          { ref:'124',client:'mrs smith',date: new Date(2014,1,25), proximity:10,priority:2, subJobs:[{},{},{}]},
-	          { ref:'125',client:'mr doe',date: new Date(2014,1,22), proximity:30,priority:3, subJobs:[{},{},{}]},
-	          { ref:'126',client:'mrs doe',date: new Date(2014,1,21), proximity:40,priority:3, subJobs:[{},{},{}]}
-	        ];
-	        db.addBatch(jobs).then(function(res) {
-		      console.log(res);
-		      $scope.displayJobs(jobs);
-		    });
-	      };
 
 	      $scope.addJob = function(job) {
 
@@ -140,6 +105,5 @@ define(function (require) {
 	        return subJobs;
 	      };
 
-	      $scope.init();
 	    }]);
 });

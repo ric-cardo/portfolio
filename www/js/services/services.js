@@ -4,6 +4,7 @@ define(function (require) {
   var printStackTrace = require('stacktrace');
   var PouchDB = require('pouchdb');
   var services = angular.module('app.services', []);
+  var _ =require('underscore');
 
   services.factory('pouchdb', function() {
     PouchDB.enableAllDbs = true;
@@ -12,6 +13,12 @@ define(function (require) {
 
   services.factory('db', function($q, pouchdb, $rootScope) {
 
+    // extracts job object from returned result obj
+    function extractJobs(jobs)
+    {
+      jobs = _.pluck(jobs.rows,'doc');
+      return jobs
+    }
     return {
       // adds multiple records to database
       addBatch:function(array){
@@ -48,7 +55,7 @@ define(function (require) {
             if (err) {
               deferred.reject(err);
             } else {
-              deferred.resolve(res);
+              deferred.resolve(extractJobs(res));
             }
           });
         });
