@@ -9,6 +9,9 @@
       <div class="alert-box alert" ng-show="form.serverUrl.$invalid && submitted">
         <i> cannot connect to server</i>
       </div>
+      <div class="alert-box success" ng-show="canLogin">
+         <a href="#/login"> server connection established CLICK HERE</a>
+      </div>
     </div>
     <div class="columns small-12">
        <button class="button" ng-click='update(settings,form)'  ng-disabled="form.$invalid || isUnchanged(settings)">save</button>

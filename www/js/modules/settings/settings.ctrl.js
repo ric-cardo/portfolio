@@ -9,7 +9,7 @@ define(function (require) {
 	module.controller('SettingsCtrl',
 		['$scope','$q','config','Ping',function ($scope,$q,config,Ping) {
 			$scope.master = config;
-
+			$scope.canLogin = false;
 			$scope.submitted = false;
 			// pass in ngform so can access $dirty state
 			$scope.update = function(settings,ngForm) {
@@ -21,6 +21,7 @@ define(function (require) {
 					// success
 					promise.then(function(){
 						$scope.save(settings);
+						$scope.canLogin = true;
 					});
 					// fail
 					promise.catch(function(){
@@ -30,6 +31,7 @@ define(function (require) {
 				}
 				else{
 					$scope.save(settings);
+					$scope.canLogin = true;
 				}
 			};
 
