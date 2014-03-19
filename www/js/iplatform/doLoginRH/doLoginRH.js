@@ -23,12 +23,6 @@ define(function (require) {
   doLoginRH.invoke = function(context){
     var self = this,
         physicalDeviceID = this.getPhysicalDeviceID();
-    //test user
-    if(!context.username)
-    {
-      context.username = 'userName';
-      context.password = 'h1234.K1234';
-    }
     
     sessionStorage.removeItem('loginError');
     

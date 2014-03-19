@@ -15,13 +15,18 @@ app.use(express.session({ secret: 'i am not telling you' }));
 app.use(express.bodyParser());
 
 app.get(routePrefix+'ping', function(req, res) {
-  
-    res.send([{name:'server'}]);
+   res.send([{name:'server'}]);
 });
 
 app.get(routePrefix+'login', function(req, res) {
-	console.log(req.query.userName)
-    res.send([{name:'server'}]);
+	if(req.query.userName === 'user' && req.query.userPassword === '123')
+  	{
+  		res.send({username:'user'});
+  	}
+  	else
+  	{
+  		res.send({errormessage:'invalid username or password'});
+  	} 
 });
 
 module.exports = app;
