@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -95,6 +96,16 @@ module.exports = function(grunt) {
             }
           }
         }
+      },
+      express: {
+        server: {
+          options: {
+            port: 9000,
+            bases: 'www',
+            debug:true,
+            server:'./server.js'
+          }
+        }
       }
     });
 
@@ -106,9 +117,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-phantom');
   grunt.loadNpmTasks('grunt-scaffold');
+  grunt.loadNpmTasks('grunt-express');
   // Default task(s).
   grunt.registerTask('default', ['watch:js']);
   grunt.registerTask('test', ['karma']);
   grunt.registerTask('e2e', ['protractor']);
-
+  grunt.registerTask('myServer', ['express', 'express-keepalive']);
 };
