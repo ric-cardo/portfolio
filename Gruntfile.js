@@ -122,5 +122,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['watch:js']);
   grunt.registerTask('test', ['karma']);
   grunt.registerTask('e2e', ['protractor']);
-  grunt.registerTask('myServer', ['express', 'express-keepalive']);
+  grunt.registerTask('server', ['express', 'express-keepalive']);
 };
