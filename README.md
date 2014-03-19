@@ -19,9 +19,6 @@ username: user
 password: 123
 serverUrl: http://localhost:9000
 ```
-### issue
-Unable to delete mocked jobs when database is setup for the first time.
-
 Dojit Games
 ---------- 
 Below are links to games and website i created during my time at dojit.
