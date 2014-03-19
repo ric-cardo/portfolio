@@ -18,7 +18,7 @@ grunt server
 username: user
 password: 123
 serverUrl: http://localhost:9000
-``
+```
 
 Dojit Games
 ---------- 
