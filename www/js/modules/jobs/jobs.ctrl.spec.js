@@ -48,8 +48,9 @@ function(){
         jobCtrl = $controller('JobCtrl', {
           $scope: scope,
           db:dbMock,
-          frontController: frontCtrlMock,
-          typeOptions: types
+          FrontController: frontCtrlMock,
+          typeOptions: types,
+          jobs:[]
         });
       })
     );
