@@ -5,7 +5,8 @@
  * below, you can see we bring in our services and constants modules
  * which avails each controller of, for example, the `config` constants object.
  **/
-define(['angular', 'services/frontController'], function (angular) {
+define(['angular','ui-router', 'services/frontController'], function (angular) {
   'use strict';
-  return angular.module('app.login', ['services.frontController']);
+  require();
+  return angular.module('app.login', ['ui.router','services.frontController']);
 });
