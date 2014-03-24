@@ -47,35 +47,12 @@ define(function (require) {
 
   doLoginRH.remoteLogin = function(url,data)
   {
-    var self = this;
     return $.getJSON(url,data);
-    //.then(function(response){self.onSuccess(response);},function(error){self.onError(error);});
   };
 
   doLoginRH.localLogin = function(data)
   {
-    var self = this;
     return this.loginMock(data);
-    //.then(function(response){self.onSuccess(response);},function(error){self.onError(error);});
-  };
-
-  // success handler for login
-  doLoginRH.onSuccess = function(data){
-    
-    if(data.hasOwnProperty('errormessage'))
-    {
-      this.onError(data.errormessage);
-      return false;
-    }
-
-    this.routeTo(this.nextWorkflow);
-  };
-
-  // error handler for login
-  doLoginRH.onError = function(error)
-  {
-    sessionStorage.setItem('loginError',error);
-    this.routeTo(this.onErrorWorkflow);
   };
 
   doLoginRH.getPhysicalDeviceID = function()
@@ -84,7 +61,7 @@ define(function (require) {
   };
 
   doLoginRH.loginMock =function(data){
-    console.log(data);
+    
     var defer = $.Deferred();
     defer.resolve();
     return defer.promise();

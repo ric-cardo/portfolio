@@ -17,6 +17,7 @@ function errorResponse(response)
 	defer.reject(response);
 	return defer.promise();
 }
+
 define(
 [
 	'iplatform/doLoginRH/doLoginRH'
@@ -78,35 +79,20 @@ function (doLoginRH){
 
 		describe('remoteLogin',function(){
 
-			it('should call onSuccess on successfully server request', function() {
-				spyOn(doLoginRH, 'onSuccess');
-				spyOn($, 'getJSON').andReturn(successResponse({}));
-				doLoginRH.remoteLogin(serverUrl,data);
-				expect(doLoginRH.onSuccess).toHaveBeenCalled();
-			});
-
-			it('should call onError on unsuccessfully server request', function() {
-				spyOn(doLoginRH, 'onError');
-				spyOn($, 'getJSON').andReturn(errorResponse({}));
-				doLoginRH.remoteLogin(serverUrl,data);
-				expect(doLoginRH.onError).toHaveBeenCalled();
+			it('should make request to the server and return promise', function() {
+				spyOn($, 'getJSON').andReturn(successResponse('resolved'));
+				var result = doLoginRH.remoteLogin(serverUrl,data);
+				expect($.getJSON).toHaveBeenCalled();
+				expect(typeof result.then).toBe('function');
 			});
 		});
 
 		describe('localLogin',function(){
 
-			it('should call onSuccess on successfully local login', function() {
-				spyOn(doLoginRH, 'onSuccess');
-				spyOn(doLoginRH, 'loginMock').andReturn(successResponse({}));
-				doLoginRH.localLogin(data);
-				expect(doLoginRH.onSuccess).toHaveBeenCalled();
-			});
-
-			it('should call onError on unsuccessfully local login', function() {
-				spyOn(doLoginRH, 'onError');
-				spyOn(doLoginRH, 'loginMock').andReturn(errorResponse({}));
-				doLoginRH.localLogin(data);
-				expect(doLoginRH.onError).toHaveBeenCalled();
+			it('should return a promise', function() {
+				spyOn(doLoginRH, 'loginMock').andReturn(successResponse('resolved')); //;
+				var result = doLoginRH.localLogin(data);
+				expect(typeof result.then).toBe('function');
 			});
 		});
 
